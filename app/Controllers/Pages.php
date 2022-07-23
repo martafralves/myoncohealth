@@ -22,9 +22,21 @@ class Pages extends Controller
         echo view('templates/footer');
     }
 
-    public function login(){
-        echo view('templates/header'); 
-        return view('pages/login');
+    //public function login(){
+      //  echo view('templates/header'); 
+        //return view('pages/login');
+        //echo view('templates/footer');
+    //}
+
+    //public function register(){
+      //  echo view('templates/header');
+        //return view ('pages/register');
+        //echo view('templates/footer');
+    //}
+
+    public function enquiry(){
+        echo view('templates/header');
+        return view ('pages/enquiries');
         echo view('templates/footer');
     }
 }
