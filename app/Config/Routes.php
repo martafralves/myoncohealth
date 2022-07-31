@@ -17,8 +17,8 @@ if (is_file(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
-$routes->setDefaultMethod('index');
+$routes->setDefaultController('Auth');
+$routes->setDefaultMethod('');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 // The Auto Routing (Legacy) is very dangerous. It is easy to create vulnerable apps
@@ -36,10 +36,15 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Pages::index');
-$routes->get('/about', 'Pages::showpage');
-$routes->get('/login', 'Users::login');
-$routes->match(['get', 'post'],'/register', 'Users::register');
-$routes->get('/enquiries', 'Pages::enquiry');
+$routes->get('/about', 'Pages::about');
+$routes->match(['get', 'post'], '/login', 'Auth::login');;
+$routes->match(['get', 'post'],'/profile', 'Auth::userprofile');
+$routes->get('/dashboard', 'Auth::dashboard');
+$routes->get('/admindash', 'Admin::admindashboard');
+$routes->match(['get', 'post'],'/adminlogin', 'Admin::adminlogin');
+$routes->match(['get', 'post'], '/register', 'Auth::register'); //match does get and post requests both on the same route
+$routes->get('logout', 'Auth::logout');
+$routes->get('logout', 'Admin::logout');
 
 /*
  * --------------------------------------------------------------------

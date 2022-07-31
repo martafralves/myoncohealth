@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="container">
-        <img src="https://unsplash.com/photos/86w7AHeZ424" class="img-fluid" alt="Books homepage">
+        
     </div>
 </section>
 <section>
