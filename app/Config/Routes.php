@@ -44,6 +44,7 @@ $routes->match(['get', 'post'], '/login', 'Auth::login', ['filter' => 'noauth'])
 $routes->match(['get', 'post'],'/profile', 'Auth::userprofile', ['filter' => 'auth']);
 $routes->get('/dashboard', 'Auth::dashboard', ['filter' => 'auth']);
 $routes->get('logout', 'Auth::logout');
+$routes->match(['get', 'post'], '/enquiries', 'Contact::enquiry');
 
 //ADMIN ROUTES
 $routes->get('/admindash', 'Admin::admindashboard', ['filter' => 'auth']);
