@@ -35,17 +35,25 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+//USER ROUTES
 $routes->get('/', 'Pages::index');
 $routes->get('/about', 'Pages::about');
-$routes->match(['get', 'post'], '/login', 'Auth::login');;
-$routes->match(['get', 'post'],'/profile', 'Auth::userprofile');
-$routes->get('/dashboard', 'Auth::dashboard');
-$routes->get('/admindash', 'Admin::admindashboard');
-$routes->match(['get', 'post'],'/adminlogin', 'Admin::adminlogin');
-$routes->match(['get', 'post'], '/register', 'Auth::register'); //match does get and post requests both on the same route
+$routes->match(['get', 'post'], '/register', 'Auth::register', ['filter' => 'noauth']); //match does get and post requests both on the same route
+$routes->match(['get', 'post'], '/login', 'Auth::login', ['filter' => 'noauth']);
+$routes->match(['get', 'post'],'/profile', 'Auth::userprofile', ['filter' => 'auth']);
+$routes->get('/dashboard', 'Auth::dashboard', ['filter' => 'auth']);
 $routes->get('logout', 'Auth::logout');
-$routes->get('logout', 'Admin::logout');
 
+//ADMIN ROUTES
+$routes->get('/admindash', 'Admin::admindashboard', ['filter' => 'auth']);
+$routes->match(['get', 'post'],'/adminlogin', 'Admin::adminlogin', ['filter' => 'noauth']);
+$routes->get('logout', 'Admin::logout');
+$routes->get('/listpatients', 'Admin::listpatients');
+$routes->get('delete/(:num)', 'Admin::delete/$1'); //delete patient
+$routes->match(['get', 'post'],'addpatient', 'Admin::addpatient'); //Add new patient
+$routes->get('/editpatient/(:num)', 'Admin::edit/$1'); //edit patient
+$routes->post('update/(:num)', 'Admin::update/$1'); //update
 /*
  * --------------------------------------------------------------------
  * Additional Routing

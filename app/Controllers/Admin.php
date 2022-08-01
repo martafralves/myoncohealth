@@ -3,6 +3,8 @@
 namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\AdminModel;
+use App\Models\userModel;
+use App\Libraries\Hash;
 
 class Admin extends BaseController
 {
@@ -76,6 +78,96 @@ class Admin extends BaseController
         echo view('templates/header', $data);
         echo view('admin/admindash');
         echo view('templates/footer');
+    }
+
+    public function listpatients()
+    {
+        $user = new userModel();
+        $data['user'] = $user ->findAll();
+
+        echo view('templates/header');
+        echo view('admin/listpatients', $data);
+        echo view('templates/footer');
+    }
+
+    public function addpatient(){
+        $data = [];
+
+        //check if method is post or get
+        if($this->request->getMethod() == 'post'){
+            //validation
+            $rules = [
+                'firstname' => 'required|min_length[3]|max_length[20]',
+                'lastname' => 'required|min_length[3]|max_length[20]',
+                'gender' => 'required|min_length[3]|max_length[20]',
+                'dob' => [
+                    'rules' => 'required|check_date',
+                    'label' => 'Date of Birth',
+                    'errors' => ['check_date' => 'Your date of birth has to be before today.']
+                ],
+                'diagnosis' => 'required|min_length[3]|max_length[155]',
+                'email' => 'required|min_length[6]|max_length[50]|valid_email|is_unique[users.email]',
+                'password' =>'required|min_length[8]|max_length[255]',
+                'cpassword' => [
+                    'rules' => 'required|matches[password]',
+                    'label' => 'confirm password'
+                    ]
+            ];
+            if(! $this->validate($rules)){//if form not valid
+                $data['validation'] = $this->validator;
+            }else{
+                //store user in DB
+                $usermodel = new userModel();
+
+                $newData = [
+                    'firstname' => $this->request->getVar('firstname'),
+                    'lastname' => $this->request->getVar('lastname'),
+                    'gender' => $this->request->getVar('gender'),
+                    'dob' => $this->request->getVar('dob'),
+                    'diagnosis' => $this->request->getVar('diagnosis'),
+                    'email' => $this->request->getVar('email'),
+                    'password' => Hash::make($this->request->getVar('password'))
+                ];
+                $usermodel->save($newData);
+                $session = session();
+                $session->setFlashdata('success', 'Patient added successfully.');
+                return redirect()->to('/listpatients');
+            }
+        }
+        echo view('templates/header');
+        echo view('admin/addpatient', $data);
+        echo view('templates/footer');
+    }
+
+    public function edit($id){
+
+        $patient = new userModel();
+        $data['patient'] = $patient->find($id);
+
+        echo view('templates/header');
+        echo view('admin/editpatient', $data);
+        echo view('templates/footer');
+    }
+
+    public function update($id){
+        $patient = new userModel();
+        $data = [
+            'firstname' => $this->request->getPost('firstname'),
+            'lastname' => $this->request->getPost('lastname'),
+            'gender' => $this->request->getPost('gender'),
+            'dob' => $this->request->getPost('dob'),
+            'diagnosis' => $this->request->getPost('diagnosis'),
+            'email' => $this->request->getPost('email')
+        ];
+
+        $patient->update($id, $data);
+        return redirect()->to(base_url('/listpatients'))->with('success', 'Patient record updated.');
+    }
+    public function delete($id){
+        $patient = new userModel();
+
+        $patient->delete($id);
+        return redirect()->to(base_url('listpatients'))->with('success', 'Patient Deleted Successfully');
     }
     
 }
