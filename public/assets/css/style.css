@@ -1,11 +1,35 @@
 body {
     min-height: 100vh;
+    padding-top: 60px;
     display: flex;
     flex-direction: column;
+    color: #787A91;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #28c4e4;
 }
 
 footer{
     margin-top: auto;
+    background-color: #DFF6FF;
+}
+
+button{
+    background-color: #28c4e4;
+}
+
+/*NAVBAR*/
+
+.brand-name {
+    color: #28c4e4;
+}
+
+.nav-item a:link{
+    font-size:medium;
+    font-weight: bolder;
+    word-spacing: 2em;
+    margin-left: 50px;
 }
 
 /*HOMEPAGE STYLING*/
@@ -15,8 +39,7 @@ footer{
     margin: auto;
     }
 
-.homepage-img{
-    display: flex;
-    width: fit-content;
-    width: fit-content;
+
+.home-jumbotron{
+    background-color: #DFF6FF;
 }

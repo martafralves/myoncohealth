@@ -37,7 +37,7 @@ class Auth extends BaseController
                 if($userdata){
                     if(password_verify($password, $userdata['password'])){
                         $this->setUserSession($userdata);
-                        return redirect()->to('/dashboard');
+                        return redirect()->to('dashboard');
                         //print_r($userdata)
                     }else{
                         $this ->session->setTempdata('error','Invalid password.',3);
@@ -111,7 +111,7 @@ class Auth extends BaseController
                 $usermodel->save($newData);
                 $session = session();
                 $session->setFlashdata('success', 'Successful Registration');
-                return redirect()->to('/login');
+                return redirect()->to(base_url('/login'));
             }
         }
         //if it's get method, we return the view
@@ -167,7 +167,7 @@ class Auth extends BaseController
 
                 $usermodel->save($newData);
                 session()->setFlashdata('success', 'Successfully Updated');
-                return redirect()->to('/profile');
+                return redirect()->to(base_url('/profile'));
             }
         }
         $data['user'] = $usermodel->where('id', session()->get('id'))->first();
@@ -179,7 +179,7 @@ class Auth extends BaseController
 
     public function logout(){
 		session()->destroy();
-		return redirect()->to('/');
+		return redirect()->to('/home');
 	}
 
     public function bookAppointment() {

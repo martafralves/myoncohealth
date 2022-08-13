@@ -37,7 +37,7 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 //USER ROUTES
-$routes->get('/', 'Pages::index');
+$routes->get('/home', 'Pages::index');
 $routes->get('/about', 'Pages::about');
 $routes->match(['get', 'post'], '/register', 'Auth::register', ['filter' => 'noauth']); //match does get and post requests both on the same route
 $routes->match(['get', 'post'], '/login', 'Auth::login', ['filter' => 'noauth']);

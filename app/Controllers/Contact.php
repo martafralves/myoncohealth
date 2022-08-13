@@ -45,7 +45,7 @@ class Contact extends BaseController
                 $contactmodel->save($cdata);
                 $session = session();
                 $session->setFlashdata('success', 'Your query was sent successfully.');
-                return redirect()->to('/enquiries');
+                return redirect()->to(base_url('/enquiries'));
             }else{
                 $data['validation'] = $this->validator;
             }

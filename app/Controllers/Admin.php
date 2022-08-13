@@ -35,7 +35,7 @@ class Admin extends BaseController
                 if($userdata){
                     if(password_verify($password, $userdata['password'])){
                         $this->setAdminSession($userdata);
-                        return redirect()->to('/admindash');
+                        return redirect()->to(base_url('/admindash'));
                         //print_r($userdata);
                     }else{
                         $this ->session->setTempdata('error','Invalid password.',3);
@@ -70,7 +70,7 @@ class Admin extends BaseController
 
         public function logout(){
             session()->destroy();
-            return redirect()->to('/');
+            return redirect()->to(base_url('/home'));
         }
 
         public function admindashboard()
@@ -132,7 +132,7 @@ class Admin extends BaseController
                 $usermodel->save($newData);
                 $session = session();
                 $session->setFlashdata('success', 'Patient added successfully.');
-                return redirect()->to('/listpatients');
+                return redirect()->to(base_url('/listpatients'));
             }
         }
         echo view('templates/header');

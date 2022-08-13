@@ -1,21 +1,26 @@
 <html>
     <head>
         <title>MyOncoHealth</title>
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" /> 
+
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel = "stylesheet" type = "text/css" href = "<?= base_url('public/assets/css/style.css');?>">
+        <link rel = "stylesheet" type = "text/css" href="assets/css/style.css">
     </head>
     <body>
 
     <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
         <div class="container">
-        <a class="navbar-brand" href="/">MyOncoHealth</a>
+        <a class="navbar-brand" href="/home"><img src="assets/images/logo.png" width="30" height="30" class = "d-inline-block align-top" alt="Myoncohealth logo - source icons8.com"> 
+        <h4 class='brand-name d-inline-block align-top'>MyOncoHealth</h4></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">About Us</a>
+                    <a class="nav-link" href="/about">About</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/enquiries">Enquiries</a>
