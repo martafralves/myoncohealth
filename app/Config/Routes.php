@@ -45,6 +45,11 @@ $routes->match(['get', 'post'],'/profile', 'Auth::userprofile', ['filter' => 'au
 $routes->get('/dashboard', 'Auth::dashboard', ['filter' => 'auth']);
 $routes->get('logout', 'Auth::logout');
 $routes->match(['get', 'post'], '/enquiries', 'Contact::enquiry');
+$routes->match(['get', 'post'], '/book_appointment', 'Auth::bookAppointment');
+$routes->get('/my_appointments', 'Auth::listappointments');
+$routes->get('/edit_appointment/(:num)', 'Auth::editappointment/$1');
+$routes->post('update/(:num)', 'Auth::update/$1');
+$routes->get('delete/(:num)', 'Auth::delete/$1');
 
 //ADMIN ROUTES
 $routes->get('/admindash', 'Admin::admindashboard', ['filter' => 'auth']);
@@ -55,6 +60,7 @@ $routes->get('delete/(:num)', 'Admin::delete/$1'); //delete patient
 $routes->match(['get', 'post'],'addpatient', 'Admin::addpatient'); //Add new patient
 $routes->get('/editpatient/(:num)', 'Admin::edit/$1'); //edit patient
 $routes->post('update/(:num)', 'Admin::update/$1'); //update
+$routes->get('/listappointments', 'Admin::listappointments');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

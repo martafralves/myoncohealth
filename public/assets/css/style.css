@@ -1,0 +1,22 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+footer{
+    margin-top: auto;
+}
+
+/*HOMEPAGE STYLING*/
+.main-carousel{
+    width: 88.5%;
+    align-self: center;
+    margin: auto;
+    }
+
+.homepage-img{
+    display: flex;
+    width: fit-content;
+    width: fit-content;
+}

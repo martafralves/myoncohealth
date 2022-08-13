@@ -4,15 +4,18 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\userModel;
 use App\Libraries\Hash;
+use App\Models\BookingModel;
 
 class Auth extends BaseController
 {
     public $userModel;
+    public $BookingModel;
     public $session;
 
     public function __construct(){
-        helper('form');
+        helper(['form', 'url']);
         $this -> userModel = new userModel(); //so we can reuse the model
+        $this -> BookingModel = new BookingModel(); 
         $this -> session = session();
     }
 
@@ -53,7 +56,7 @@ class Auth extends BaseController
         echo view('templates/footer');
 
 	}
-    private function setUserSession($userdata){
+    public function setUserSession($userdata){
         $userdata = [
             'id' => $userdata['id'],
             'firstname' => $userdata['firstname'],
@@ -178,4 +181,82 @@ class Auth extends BaseController
 		session()->destroy();
 		return redirect()->to('/');
 	}
+
+    public function bookAppointment() {
+        $data = [];
+
+        if($this->request->getMethod() == 'post'){
+            //validation
+            $rules = [
+                'date' => 'required',
+                'time' => 'required',
+                'reason' => 'required'
+            ];
+            if(! $this->validate($rules)){//if form not valid
+                $data['validation'] = $this->validator;
+            }else{
+                //store user in DB
+                $BookingModel = new BookingModel();
+                $userModel = new userModel();
+
+                $newAppt = [
+                    'date' => $this->request->getVar('date'),
+                    'time' => $this->request->getVar('time'),
+                    'reason' => $this->request->getVar('reason'),
+                    'observations' => $this->request->getVar('observations'),
+                    'user_id' => $this->session->get('id')
+                ];
+                $BookingModel->save($newAppt);
+                $session = session();
+                $session->setFlashdata('success', 'Appointment Booked Successfully');
+                return redirect()->to('/dashboard');
+
+                $data['booking'] = $BookingModel ->findAll();
+            }
+        }
+        //if it's get method, we return the view
+        echo view('templates/header', $data);
+        echo view('pages/book_appointment');
+        echo view('templates/footer');
+     }
+
+     public function listAppointments(){
+        $bookings = new BookingModel();
+        $data['bookings'] = $bookings ->findAll();
+
+        echo view('templates/header');
+        echo view('pages/listappointments', $data);
+        echo view('templates/footer');
+     }
+
+     public function editappointment($id){
+
+        $appointment = new BookingModel();
+        $data['appointment'] = $appointment->find($id);
+
+        echo view('templates/header');
+        echo view('pages/editappointment', $data);
+        echo view('templates/footer');
+    }
+
+    public function update($id){
+        $appointment = new BookingModel();
+        $data = [
+            'date' => $this->request->getPost('date'),
+            'time' => $this->request->getPost('time'),
+            'reason' => $this->request->getPost('reason'),
+            'observations' => $this->request->getPost('observations'),
+        ];
+
+        $appointment->update($id, $data);
+        return redirect()->to(base_url('/my_appointments'))->with('success', 'Appointment updated.');
+    }    
+
+    public function delete($id){
+        $appointment = new BookingModel();
+
+        $appointment->delete($id);
+        return redirect()->to(base_url('/my_appointments'))->with('success', 'Appointment Cancelled Successfully');
+    }
+
 }

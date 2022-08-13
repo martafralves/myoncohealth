@@ -4,6 +4,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\AdminModel;
 use App\Models\userModel;
+use App\Models\BookingModel;
 use App\Libraries\Hash;
 
 class Admin extends BaseController
@@ -12,7 +13,7 @@ class Admin extends BaseController
     public $session;
 
     public function __construct(){
-        helper('form');
+        helper(['form', 'url']);
         $this -> AdminModel = new AdminModel(); 
         $this -> session = session();
     }
@@ -168,6 +169,19 @@ class Admin extends BaseController
 
         $patient->delete($id);
         return redirect()->to(base_url('listpatients'))->with('success', 'Patient Deleted Successfully');
+    }
+
+    public function listappointments($id){
+        $booking = new BookingModel();
+        $query = $this->$booking->getBookingByID($id);
+
+        $data['patient'] = $query;
+        $name ['name']= $this->$booking->getName($id);
+
+        $merge = array_merge($data, $name);
+        echo view('templates/header');
+        echo view('admin/listappointments', $merge);
+        echo view('templates/footer');
     }
     
 }

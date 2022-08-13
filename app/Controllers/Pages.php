@@ -5,6 +5,10 @@ use CodeIgniter\Controller;
 
 class Pages extends BaseController
 {
+    public function __construct(){
+        helper(['form', 'url']);
+    }
+    
     public function index()
     {
         echo view('templates/header');

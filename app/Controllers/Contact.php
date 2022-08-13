@@ -7,7 +7,7 @@ use App\Models\ContactModel;
 class Contact extends BaseController
 {
     public function __construct(){
-        helper('form');
+        helper(['form', 'url']);
     }
     public function enquiry()
     {
