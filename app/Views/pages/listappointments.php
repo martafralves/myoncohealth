@@ -4,7 +4,7 @@
             <div class = "card">
                 <div class = "card-header">
                     <h3>My Appointments
-                    <a href="<?= base_url('/book_appointment')?>" class="btn btn-primary float-right">New Appointment</a>
+                    <a href="<?= base_url('/book_appointment')?>" class="custom-btn btn btn-primary float-right">New Appointment</a>
                     </h3>
                 </div>
                 <?php if(session()->get('success')): ?>

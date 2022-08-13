@@ -11,8 +11,8 @@
                     </div>
                 <?php endif; ?>
             <br>
-            <a class="btn btn-primary btn-lg" href="/listpatients" role="button">List of Patients</a>
-            <a class="btn btn-primary btn-lg" href="/listappointments" role="button">See Appointment List</a>
+            <a class="custom-btn btn btn-primary btn-lg" href="/listpatients" role="button">List of Patients</a>
+            <a class="custom-btn btn btn-primary btn-lg" href="/listappointments" role="button">See Appointment List</a>
             </div>
         </div>
     </div>

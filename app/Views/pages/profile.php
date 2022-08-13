@@ -3,7 +3,6 @@
             <div class= "col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 mt-5 pt-3 pb-3 mb-5">
                 <h3>Edit your profile</h3>
                 <hr>
-                <hr>
         <?php if (session()->get('success')): ?>
           <div class="alert alert-success" role="alert">
             <?= session()->get('success') ?>
@@ -69,7 +68,7 @@
                     </div>
                     <div class ="row">
                         <div class="col-12 col-sm-4">
-                        <button class="btn btn-primary btn-block" type="submit">Update</button>
+                        <button class="custom-btn btn btn-primary btn-block" type="submit">Update</button>
                         </div>
                     </div>
                 </form>

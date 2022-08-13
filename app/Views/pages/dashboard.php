@@ -11,9 +11,9 @@
                     </div>
                 <?php endif; ?>
             <br>
-            <a class="btn btn-primary btn-lg" href="/profile" role="button">Update Profile</a>
-            <a class="btn btn-primary btn-lg" href="/book_appointment" role="button">Book appointment</a>
-            <a class="btn btn-primary btn-lg" href="/my_appointments" role="button">My Appointments</a>
+            <a class="custom-btn btn btn-primary btn-lg" href="/profile" role="button">Update Profile</a>
+            <a class="custom-btn  btn btn-primary btn-lg" href="/book_appointment" role="button">Book appointment</a>
+            <a class="custom-btn  btn btn-primary btn-lg" href="/my_appointments" role="button">My Appointments</a>
             </div>
         </div>
     </div>

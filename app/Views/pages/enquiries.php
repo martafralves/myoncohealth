@@ -20,19 +20,19 @@
                         <div class = "col-12 col-sm-6">
                             <div class = "form-group">
                                 <label for="firstname">First Name</label>
-                                <input type="text" class = "form-control" name = "firstname" id = "firstname" value = "">
+                                <input type="text" class = "form-control" name = "firstname" id = "firstname" value = "" placeholder = "Enter first name">
                             </div>
                         </div>
                         <div class = "col-12 col-sm-6">
                             <div class = "form-group">
                                 <label for="lastname">Last Name</label>
-                                <input type="text" class = "form-control" name = "lastname" id = "lastname" value = "">
+                                <input type="text" class = "form-control" name = "lastname" id = "lastname" value = "" placeholder = "Enter last name">
                             </div>
                         </div>
                         <div class = "col-12 col-sm-6">
                             <div class = "form-group">
                                 <label for="phone">Phone Number</label>
-                                <input type="text" class = "form-control" name = "phone" id = "phone" value = "">
+                                <input type="text" class = "form-control" name = "phone" id = "phone" value = "" placeholder = "Enter phone number">
                             </div>
                         </div>
                         <div class = "col-12 col-sm-6">

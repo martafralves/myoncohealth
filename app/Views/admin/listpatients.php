@@ -4,7 +4,7 @@
             <div class = "card">
                 <div class = "card-header">
                     <h3>Patient Database
-                    <a href="<?= base_url('/addpatient')?>" class="btn btn-primary float-right">Add Patient</a>
+                    <a href="<?= base_url('/addpatient')?>" class="custom-btn btn btn-primary float-right">Add Patient</a>
                     </h3>
                     <?php if(session()->get('success')): ?>
                     <div class = "alert alert-success" role="alert">
