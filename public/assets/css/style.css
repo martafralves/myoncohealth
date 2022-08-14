@@ -13,6 +13,8 @@ h1, h2, h3, h4, h5, h6 {
 footer .footer{
     margin-top: auto;
     position: fixed;
+    width: 100%;
+    height: 50px;
     left: 0;
     bottom: 0;
     background-color: #DFF6FF !important;
