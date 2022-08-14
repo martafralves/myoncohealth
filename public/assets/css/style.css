@@ -10,17 +10,20 @@ h1, h2, h3, h4, h5, h6 {
     color: #28c4e4;
 }
 
-footer{
+footer .footer{
     margin-top: auto;
+    position: fixed;
+    left: 0;
+    bottom: 0;
     background-color: #DFF6FF !important;
 }
 
-button{
+.button-custom{
     background-color: #28c4e4 !important;
     border: none !important;
 }
 
-button:hover{
+.button-custom:hover{
     background-color: #28c4e4 !important;
     box-shadow: 0 5px 15px rgba(177, 222, 235, 0.4) !important;
 }
@@ -125,4 +128,10 @@ button:hover{
         font-family: "Montserrat", Sans-serif;
         font-size: 12px;
         color: #6c83a2}
+
+/*LIST VIEWS*/
+#cancel-btn{
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+}
 

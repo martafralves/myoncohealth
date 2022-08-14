@@ -22,15 +22,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/about">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/enquiries">Enquiries</a>
-                </li>
             <?php if(session()->get('isLoggedIn')): ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="/profile">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                    <a class="nav-link" href="/admindash">Dashboard</a>
                 </li>
                 <ul class = "navbar-nav my-2 my-lg-0">
                 <li class="nav-item">

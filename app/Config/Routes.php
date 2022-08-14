@@ -17,7 +17,7 @@ if (is_file(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Auth');
+$routes->setDefaultController('');
 $routes->setDefaultMethod('');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -25,7 +25,7 @@ $routes->set404Override();
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
 // Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
-//$routes->setAutoRoute(false);
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -45,22 +45,29 @@ $routes->match(['get', 'post'],'/profile', 'Auth::userprofile', ['filter' => 'au
 $routes->get('/dashboard', 'Auth::dashboard', ['filter' => 'auth']);
 $routes->get('logout', 'Auth::logout');
 $routes->match(['get', 'post'], '/enquiries', 'Contact::enquiry');
-$routes->match(['get', 'post'], '/book_appointment', 'Auth::bookAppointment');
-$routes->get('/my_appointments', 'Auth::listappointments');
-$routes->get('/edit_appointment/(:num)', 'Auth::editappointment/$1');
-$routes->post('update/(:num)', 'Auth::update/$1');
-$routes->get('delete/(:num)', 'Auth::delete/$1');
+$routes->match(['get', 'post'], '/book_appointment', 'Auth::bookAppointment', ['filter' => 'auth']);
+$routes->get('/my_appointments', 'Auth::listappointments', ['filter' => 'auth']);
+$routes->get('/edit_appointment/(:num)', 'Auth::editappointment/$1', ['filter' => 'auth']);
+$routes->post('update/(:num)', 'Auth::update/$1', ['filter' => 'auth']);
+$routes->get('delete/(:num)', 'Auth::delete/$1', ['filter' => 'auth']);
 
 //ADMIN ROUTES
 $routes->get('/admindash', 'Admin::admindashboard', ['filter' => 'auth']);
 $routes->match(['get', 'post'],'/adminlogin', 'Admin::adminlogin', ['filter' => 'noauth']);
 $routes->get('logout', 'Admin::logout');
-$routes->get('/listpatients', 'Admin::listpatients');
-$routes->get('delete/(:num)', 'Admin::delete/$1'); //delete patient
-$routes->match(['get', 'post'],'addpatient', 'Admin::addpatient'); //Add new patient
-$routes->get('/editpatient/(:num)', 'Admin::edit/$1'); //edit patient
-$routes->post('update/(:num)', 'Admin::update/$1'); //update
-$routes->get('/listappointments', 'Admin::listappointments');
+$routes->get('/listpatients', 'Admin::listpatients', ['filter' => 'auth']);
+$routes->delete('delete/(:num)', 'Admin::deletept/$1', ['filter' => 'auth']); //delete patient
+$routes->match(['get', 'post'],'addpatient', 'Admin::addpatient', ['filter' => 'auth']); //Add new patient
+$routes->get('/editpatient/(:num)', 'Admin::editpt/$1', ['filter' => 'auth']); //edit patient
+$routes->put('update/(:num)', 'Admin::update/$1', ['filter' => 'auth']); //update
+$routes->get('/listappointments', 'Admin::listptappointments', ['filter' => 'auth']);
+$routes->get('/editappt_admin/(:num)', 'Admin::editappt/$1', ['filter' => 'auth']);
+$routes->put('update/(:num)', 'Admin::updateappt/$1', ['filter' => 'auth']); 
+$routes->delete('delete/(:num)', 'Admin::deleteappt/$1', ['filter' => 'auth']); 
+$routes->get('/listenquiries', 'Contact::listenquiries', ['filter' => 'auth']);
+$routes->get('/edit_enquiry/(:num)', 'Contact::editenquiry/$1', ['filter' => 'auth']);
+$routes->put('update/(:num)', 'Contact::updateenquiry/$1', ['filter' => 'auth']); 
+$routes->delete('delete/(:num)', 'Contact::deleteenquiry/$1', ['filter' => 'auth']); 
 /*
  * --------------------------------------------------------------------
  * Additional Routing

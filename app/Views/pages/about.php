@@ -1,7 +1,6 @@
 
-    <div class="container">
+    <div class="container pb-2 pt-4">
         <h3>About us</h3>
-       
     </div>
 
 <section>
@@ -9,14 +8,14 @@
     <div class="card">
       <div class="row ">
         <div class="col-md-4">
-            <img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400" class="w-100">
+            <img src="/assets/images/aboutus.avif" class="w-100">
           </div>
           <div class="col-md-8 px-3">
             <div class="card-block px-3">
-              <h4 class="card-title">Lorem ipsum dolor sit amet</h4>
-              <p class="card-text">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-              <p class="card-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <a href="#" class="btn btn-primary">Read More</a>
+              <h4 class="card-title mt-2">Patient centered care</h4>
+              <br>
+              <p class="card-text">At MyOncoHealth we value patient and family centered care and it is our upmost priority to make sure this is the foundation of services.</p>
+              <p class="card-text">Patients and families are at the center of our mission and it is for them that we work to excell every single day.</p>
             </div>
           </div>
 
@@ -29,14 +28,14 @@
       <div class="row ">
           <div class="col-md-8 px-3">
             <div class="card-block px-3">
-              <h4 class="card-title">Lorem ipsum dolor sit amet</h4>
-              <p class="card-text">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-              <p class="card-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <a href="#" class="btn btn-primary">Read More</a>
+              <h4 class="card-title mt-2">Services at a distance of a click</h4>
+              <br>
+              <p class="card-text">MyOncoHealth wants to be close to their patients and families.</p>
+              <p class="card-text">For that reason, we have created an online booking appointment system through a personal login, as well as an enquiry mechanism open for everyone.</p>
             </div>
           </div>
           <div class="col-md-4">
-            <img src="https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400" class="w-100">
+            <img src="/assets/images/aboutus2.avif" class="w-100">
           </div>
         </div>
       </div>

@@ -4,7 +4,6 @@
             <div class = "card">
                 <div class = "card-header">
                     <h3>List of Appointments
-                    <a href="<?= base_url('/book_appointment')?>" class="custom-btn btn btn-primary float-right">Add Appointment</a>
                     </h3>
                 </div>
                 <?php if(session()->get('success')): ?>
@@ -25,7 +24,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach($booking as $row) :?>
+                        <?php foreach($appts as $row) :?>
                             <tr>
                                 <td><?= $row['name'] ?></td>
                                 <td><?= $row['date'] ?></td>
@@ -33,8 +32,12 @@
                                 <td><?= $row['reason'] ?></td>
                                 <td><?= $row['observations'] ?></td>
                                 <td>
-                                    <a href="<?= base_url('edit_appointment/'.$row['bid']);?>" class = "btn btn-success btn-sm btn-block">Edit</a>
-                                    <a href="<?= base_url('delete/'.$row['bid']);?>" class = "btn btn-danger btn-sm btn-block">Cancel</a>
+                                    <a href="<?= base_url('editappt_admin/'.$row['bid']);?>" class = "btn btn-success btn-sm btn-block">Edit</a>
+                                    <!--<a href="<= base_url('delete/'.$row['bid']);?>" class = "btn btn-danger btn-sm btn-block">Cancel</a>-->
+                                    <form action ="<?= base_url('delete/'.$row['bid']);?>" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE" />
+                                    <button type="submit" id="cancel-btn" class =" btn btn-danger btn-sm btn-block">Cancel</button>
+                                    </form> 
                                 </td>
                             </tr>
                             <?php endforeach;?>

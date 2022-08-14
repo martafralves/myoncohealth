@@ -5,25 +5,10 @@ use CodeIgniter\Model;
 class BookingModel extends Model{
     protected $table = 'bookings';
     protected $primaryKey = 'bid';
-    protected $allowedFields = ['date', 'time', 'reason', 'observations', 'user_id', 'created_at' ,'updated_at'];
+    protected $allowedFields = ['date', 'name', 'time', 'reason', 'observations', 'user_id', 'created_at' ,'updated_at'];
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 
-
-    /*public function insert($data) {
-        return $this->db->insert('bookings', $data);
-     }
-  
-     public function update($data, $id) {
-        $this->db->where('id', $id);
-  
-        return $this->db->update('bookings', $data);
-     }
-    public function delete($id) {
-        $this->db->where('id', $id);
-        
-        return $this->db->delete('bookings');
-     }*/
 
     public function getBookingsToday() {
         $data = date('Y-m-d', time());

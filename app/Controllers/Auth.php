@@ -188,9 +188,14 @@ class Auth extends BaseController
         if($this->request->getMethod() == 'post'){
             //validation
             $rules = [
-                'date' => 'required',
-                'time' => 'required',
-                'reason' => 'required'
+                    'name' => 'required',
+                    'date' => [
+                        'rules' => 'required|validate_date',
+                        'label' => 'Date',
+                        'errors' => ['validate_date' => 'Your chosen date has to be after today.']
+                    ],
+                'time' => 'required|in_list[8.30-10 AM, 10-12 PM, 12-2 PM, 2-4 PM, 4-5.30 PM]',
+                'reason' => 'required|in_list[Blood tests, Chemoterapy, See a doctor, See a nurse, CT Scan]'
             ];
             if(! $this->validate($rules)){//if form not valid
                 $data['validation'] = $this->validator;
@@ -200,11 +205,12 @@ class Auth extends BaseController
                 $userModel = new userModel();
 
                 $newAppt = [
+                    'name' => $this->request->getVar('name'),
                     'date' => $this->request->getVar('date'),
                     'time' => $this->request->getVar('time'),
                     'reason' => $this->request->getVar('reason'),
                     'observations' => $this->request->getVar('observations'),
-                    'user_id' => $this->session->get('id')
+                    'user_id' => $this->session->get('user_id')
                 ];
                 $BookingModel->save($newAppt);
                 $session = session();
@@ -221,8 +227,9 @@ class Auth extends BaseController
      }
 
      public function listAppointments(){
+        
         $bookings = new BookingModel();
-        $data['bookings'] = $bookings ->findAll();
+        $data['bookings'] = $bookings->where('user_id', session()->get('user_id'))->findAll();
 
         echo view('templates/header');
         echo view('pages/listappointments', $data);
@@ -234,14 +241,15 @@ class Auth extends BaseController
         $appointment = new BookingModel();
         $data['appointment'] = $appointment->find($id);
 
-        echo view('templates/header');
-        echo view('pages/editappointment', $data);
+        echo view('templates/header', $data);
+        echo view('pages/editappointment');
         echo view('templates/footer');
     }
 
     public function update($id){
         $appointment = new BookingModel();
         $data = [
+            'name' => $this->request->getPost('name'),
             'date' => $this->request->getPost('date'),
             'time' => $this->request->getPost('time'),
             'reason' => $this->request->getPost('reason'),

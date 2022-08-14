@@ -4,6 +4,7 @@
                 <h3>Edit Patient Information</h3>
                 <hr>
                 <form action="<?=base_url('update/'.$patient['id'])?>" method="post">
+                <input type="hidden" name="_method" value="PUT"/>
                 <?php if (isset($validation)):?>
                     <div class = "col-12">
                         <div class ="alert alert-danger" role="alert">
@@ -51,7 +52,7 @@
                     </div>
                     <div class ="row">
                         <div class="col-12 col-sm-4">
-                        <button class="btn btn-primary btn-block" type="submit">Update patient</button>
+                        <button class="button-custom btn btn-primary btn-block" type="submit">Update patient</button>
                         </div>
                         <div class="col-12 col-sm-8 text-right">
                             <a href="/listpatients">Go back</a>

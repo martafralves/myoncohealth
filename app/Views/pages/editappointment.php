@@ -12,6 +12,26 @@
                     </div>
                     <?php endif; ?>
                     <div class = "row">
+                    <div class = "row">
+                    <div class = "col-12 col-sm-6">
+                            <div class = "form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class = "form-control" name = "name" id = "name" value = "<?= $appointment['name']?>" placeholder = "Enter your Name">
+                            </div>
+                        </div>
+                        <div class = "col-12 col-sm-6">
+                            <div class = "form-group">
+                            <label for="reason">Reason</label>
+                                <select id="reason" name="reason" value="<?= $appointment['reason']?>" class="form-control">
+                                    <option selected>Select reason</option>
+                                    <option>Blood tests</option>
+                                    <option>Chemoterapy</option>
+                                    <option>See a doctor</option>
+                                    <option>See a nurse</option>
+                                    <option>CT Scan</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class = "col-12 col-sm-6">
                             <div class = "form-group">
                                 <label for="date">Select Date</label>
@@ -31,19 +51,6 @@
                                 </select>
                             </div>
                         </div>
-                        <div class = "col-12 col-sm-6">
-                            <div class = "form-group">
-                            <label for="reason">Reason</label>
-                                <select id="reason" name="reason" value="<?= $appointment['reason']?>" class="form-control">
-                                    <option selected>Select reason</option>
-                                    <option>Blood tests</option>
-                                    <option>Chemoterapy</option>
-                                    <option>See a doctor</option>
-                                    <option>See a nurse</option>
-                                    <option>CT Scan</option>
-                                </select>
-                            </div>
-                        </div>
                         <div class="col-12">  
                     <div class="form-group">
                         <label for="observations">Observations</label>
@@ -51,7 +58,7 @@
                     </div>
                     <div class ="row">
                         <div class="col-12 col-sm-4">
-                        <button class="btn btn-primary btn-block" type="submit">Save changes</button>
+                        <button class="button-custom btn btn-primary btn-block" type="submit">Save changes</button>
                         </div>
                         <div class="col-12 col-sm-8 text-right">
                         </div>

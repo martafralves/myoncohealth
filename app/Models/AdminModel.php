@@ -5,7 +5,7 @@ use CodeIgniter\Model;
 class AdminModel extends Model{
     protected $table = 'admin';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['adminuser', 'password'];
+    protected $allowedFields = ['adminuser', 'password', 'level'];
 
 
 

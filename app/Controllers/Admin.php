@@ -5,6 +5,7 @@ use CodeIgniter\Controller;
 use App\Models\AdminModel;
 use App\Models\userModel;
 use App\Models\BookingModel;
+use App\Models\ContactModel;
 use App\Libraries\Hash;
 
 class Admin extends BaseController
@@ -14,8 +15,15 @@ class Admin extends BaseController
 
     public function __construct(){
         helper(['form', 'url']);
+
         $this -> AdminModel = new AdminModel(); 
         $this -> session = session();
+        
+        /*if(!$this -> session ->userdata('id'))
+            return redirect('/adminlogin');
+        if($this->session->userdata('level') == '2')
+        return redirect('/notfound');*/
+
     }
 
     public function adminlogin(){
@@ -50,7 +58,7 @@ class Admin extends BaseController
                 $data['validation'] = $this -> validator;
             }
         }
-        echo view('templates/header');
+        echo view('templates/headerAdmin');
         echo view('Admin/adminlogin');
         echo view('templates/footer');
         
@@ -76,18 +84,18 @@ class Admin extends BaseController
         public function admindashboard()
     {
         $data=[];
-        echo view('templates/header', $data);
+        echo view('templates/headerAdmin', $data);
         echo view('admin/admindash');
         echo view('templates/footer');
     }
 
     public function listpatients()
     {
-        $user = new userModel();
-        $data['user'] = $user ->findAll();
+        $patient = new userModel();
+        $data['patient'] = $patient ->findAll();
 
-        echo view('templates/header');
-        echo view('admin/listpatients', $data);
+        echo view('templates/headerAdmin', $data);
+        echo view('admin/listpatients');
         echo view('templates/footer');
     }
 
@@ -135,18 +143,18 @@ class Admin extends BaseController
                 return redirect()->to(base_url('/listpatients'));
             }
         }
-        echo view('templates/header');
-        echo view('admin/addpatient', $data);
+        echo view('templates/headerAdmin', $data);
+        echo view('admin/addpatient',);
         echo view('templates/footer');
     }
 
-    public function edit($id){
+    public function editpt($id){
 
         $patient = new userModel();
         $data['patient'] = $patient->find($id);
 
-        echo view('templates/header');
-        echo view('admin/editpatient', $data);
+        echo view('templates/headerAdmin', $data);
+        echo view('admin/editpatient');
         echo view('templates/footer');
     }
 
@@ -164,24 +172,51 @@ class Admin extends BaseController
         $patient->update($id, $data);
         return redirect()->to(base_url('/listpatients'))->with('success', 'Patient record updated.');
     }
-    public function delete($id){
+    public function deletept($id){
         $patient = new userModel();
 
         $patient->delete($id);
-        return redirect()->to(base_url('listpatients'))->with('success', 'Patient Deleted Successfully');
+        return redirect()->to(base_url('/listpatients'))->with('success', 'Patient Deleted Successfully');
     }
 
-    public function listappointments($id){
-        $booking = new BookingModel();
-        $query = $this->$booking->getBookingByID($id);
-
-        $data['patient'] = $query;
-        $name ['name']= $this->$booking->getName($id);
-
-        $merge = array_merge($data, $name);
-        echo view('templates/header');
-        echo view('admin/listappointments', $merge);
+    public function listptappointments(){
+        $appts = new BookingModel();
+        $data['appts'] = $appts ->findAll();
+        
+        echo view('templates/headerAdmin', $data);
+        echo view('admin/listappointments');
         echo view('templates/footer');
+    }
+
+    public function editappt($id){
+        $appts = new BookingModel();
+        $data['appts'] = $appts->find($id);
+
+        echo view('templates/headerAdmin', $data);
+        echo view('admin/editpatientappt');
+        echo view('templates/footer');
+
+    }
+
+    public function updateappt($id){
+        $appts = new BookingModel();
+        $data = [
+            'name' => $this->request->getPost('name'),
+            'reason' => $this->request->getPost('reason'),
+            'date' => $this->request->getPost('date'),
+            'time' => $this->request->getPost('time'),
+            'observations' => $this->request->getPost('observations'),
+        ];
+
+        $appts->update($bid, $data);
+        return redirect()->to(base_url('/listappointments'))->with('success', 'Patient appointment updated.');
+    }
+
+    public function deleteappt($id){
+        $appts = new BookingModel();
+
+        $appts->delete($id);
+        return redirect()->to(base_url('/listappointments'))->with('success', 'Appointment Deleted Successfully');
     }
     
 }

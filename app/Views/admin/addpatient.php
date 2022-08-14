@@ -63,7 +63,7 @@
                     </div>
                     <div class ="row">
                         <div class="col-12 col-sm-4">
-                        <button class="btn btn-primary btn-block" type="submit">Add patient</button>
+                        <button class="button-custom btn btn-primary btn-block" type="submit">Add patient</button>
                         </div>
                         <div class="col-12 col-sm-8 text-right">
                             <a href="/listpatients">Go back</a>

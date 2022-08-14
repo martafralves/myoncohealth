@@ -29,7 +29,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach($user as $row) :?>
+                            <?php foreach($patient as $row) :?>
                             <tr>
                                 <td><?= $row['id'] ?></td>
                                 <td><?= $row['firstname'] ?></td>
@@ -42,7 +42,11 @@
                                 <td><?= $row['updated_at'] ?></td>
                                 <td>
                                     <a href="<?= base_url('editpatient/'.$row['id']);?>" class = "btn btn-success btn-sm btn-block">Edit</a>
-                                    <a href="<?= base_url('delete/'.$row['id']);?>" class = "btn btn-danger btn-sm btn-block">Delete</a>
+                                    <!--<a href="<= base_url('delete/'.$row['id']);?>" class = "btn btn-danger btn-sm btn-block">Delete</a>-->
+                                    <form action ="<?= base_url('delete/'.$row['id']);?>" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE" />
+                                    <button type="submit" id="cancel-btn" class = "btn btn-danger btn-sm btn-block">Delete</button>
+                                    </form> 
                                 </td>
                             </tr>
                             <?php endforeach;?>

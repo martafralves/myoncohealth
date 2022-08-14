@@ -1,5 +1,5 @@
 <footer class="bg-light text-center text-lg-start">
-  <div class="text-center p-3">
+  <div class="footer text-center p-3">
   <p className='footer-text'>2022 Copyright &copy; MyOncoHealth - Images by unsplash.com | Logo by icons8.com</p>
   </div>
 </footer>

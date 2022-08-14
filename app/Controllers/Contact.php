@@ -55,4 +55,50 @@ class Contact extends BaseController
         echo view('pages/enquiries', $data);
         echo view('templates/footer');
     }
+
+    
+    public function listenquiries(){
+        $db2 = db_connect('secondDb');//connecting to the second DB
+
+        $enquiry = new ContactModel($db2);
+        $data['enquiry'] = $enquiry -> findAll();
+
+        echo view('templates/headerAdmin');
+        echo view('admin/listenquiries', $data);
+        echo view('templates/footer');
+    }
+
+    public function editenquiry($id){
+        $db2 = db_connect('secondDb');
+        $enquiry = new ContactModel($db2);
+        $data['enquiry'] = $enquiry->find($id);
+
+        echo view('templates/headerAdmin');
+        echo view('admin/editenquiries', $data);
+        echo view('templates/footer');
+    }
+
+    public function updateenquiry($id){
+        $db2 = db_connect('secondDb');
+        $enquiry = new ContactModel($db2);
+        
+        $data = [
+            'firstname' => $this->request->getPost('firstname'),
+            'lastname' => $this->request->getPost('lastname'),
+            'phone' => $this->request->getPost('phone'),
+            'email' => $this->request->getPost('email'),
+            'query' => $this->request->getPost('query'),
+        ];
+
+        $enquiry->update($id, $data);
+        return redirect()->to(base_url('/listenquiries'))->with('success', 'Enquiry updated Successfully.');
+
+    }
+
+    public function deleteenquiry($id){
+        $db2 = db_connect('secondDb');
+        $enquiry = new ContactModel($db2);
+        $enquiry->delete($id);
+        return redirect()->to(base_url('/listenquiries'))->with('success', 'This enquiry is now resolved');
+    }
 }

@@ -24,7 +24,7 @@
                 <?php endif; ?>
                     <div class ="row">
                         <div class="col-12 col-sm-4">
-                        <button class="btn btn-primary btn-block" type="submit">Login</button>
+                        <button class="button-custom btn btn-primary btn-block" type="submit">Login</button>
                         </div>
                         <div class="col-12 col-sm-8 text-right">
                             <a href="/register">Don't have an account yet?</a>
