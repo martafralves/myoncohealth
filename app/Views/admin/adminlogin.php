@@ -22,7 +22,7 @@
                         <button class="button-custom btn btn-primary btn-block" type="submit">Login</button>
                         </div>
                         <div class="col-12 col-sm-8 text-right">
-                            <a href="/home">Back to homepage</a>
+                            <a href="/">Back to homepage</a>
                         </div>
                     </div>
                 </form>

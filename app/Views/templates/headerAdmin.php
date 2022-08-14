@@ -12,7 +12,7 @@
 
     <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
         <div class="container">
-        <a class="navbar-brand" href="/home"><img src="assets/images/logo.png" width="30" height="30" class = "d-inline-block align-top" alt="Myoncohealth logo - source icons8.com"> 
+        <a class="navbar-brand" href="/"><img src="assets/images/logo.png" width="30" height="30" class = "d-inline-block align-top" alt="Myoncohealth logo - source icons8.com"> 
         <h4 class='brand-name d-inline-block align-top'>MyOncoHealth</h4></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
